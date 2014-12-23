@@ -3,7 +3,7 @@ BLShareController
 
 Based on an image I´ve found on [Dribbble](https://dribbble.com/shots/1708543-Share-Screen-IOS) I wanted something similiar for a project I was working on.
  
-BLShareController is able to share thinks via:
+BLShareController is able to share things via:
 
 * FaceBook
 * Twitter
