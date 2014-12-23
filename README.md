@@ -3,7 +3,17 @@ BLShareController
 
 Based on an image I´ve found on [Dribbble](https://dribbble.com/shots/1708543-Share-Screen-IOS) I wanted something similiar for a project I was working on.
  
-Now, to play around a little bit with Swift I´ve refactored it. 
+BLShareController is able to share thinks via:
+
+* FaceBook
+* Twitter
+* WhatsApp
+* Mail
+* SMS
+
+
+To play around a little bit with Swift I´ve refactored it. 
+
 
 ##How it works
 
