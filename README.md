@@ -5,7 +5,7 @@ Based on an image I´ve found on [Dribbble](https://dribbble.com/shots/1708543-S
  
 BLShareController is able to share things via:
 
-* FaceBook
+* Facebook
 * Twitter
 * WhatsApp
 * Mail
