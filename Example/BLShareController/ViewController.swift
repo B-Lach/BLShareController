@@ -8,9 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController,BLPresentationDelegate {
-
-   
+class ViewController: UIViewController {
+    
+    var shareController = BLShareController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,19 +35,7 @@ class ViewController: UIViewController,BLPresentationDelegate {
     }
 
     func showShareController() {
-        
-        let shareController = BLShareController()
-        shareController.presentationDelegate = self
-        self.view.addSubview(shareController.view)
-        //self.presentViewController(shareController, animated: true, completion: nil)
-    }
-    
-    // MARK: - BLShareControllerDelegate
-    func presentController(controller: UIViewController) {
-        self.presentViewController(controller, animated: true, completion: nil)
-    }
-    func dismissController() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.view.addSubview(self.shareController.view)
     }
 }
 

@@ -32,16 +32,9 @@ import UIKit
 import Social
 import MessageUI
 
-protocol BLPresentationDelegate {
-    
-    func presentController(controller:UIViewController)
-    func dismissController()
-    
-}
 class BLShareController: UIViewController, BLShareDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
     
     var initialText:String = "BLShareController works"
-    var presentationDelegate:BLPresentationDelegate?
     
     required init(coder aDecoder: NSCoder) {
       super.init(coder: aDecoder)
@@ -56,20 +49,21 @@ class BLShareController: UIViewController, BLShareDelegate, MFMailComposeViewCon
         self.view.addSubview(shareView)
     }
     
-    // MARK: - BLShareDelegate
+    // MARK: - BLShareViewDelegate
     func shareOnFaceBook() {
         
         let fbComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
         fbComposer.setInitialText(self.initialText)
         
-        self.presentationDelegate?.presentController(fbComposer)
+        self.presentController(fbComposer)
     }
     
     func shareOnTwitter() {
+        
         let tweetComposer = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
         tweetComposer .setInitialText(self.initialText)
         
-        self.presentationDelegate?.presentController(tweetComposer)
+        self.presentController(tweetComposer)
     }
     
     func shareOnWhatsApp() {
@@ -89,7 +83,7 @@ class BLShareController: UIViewController, BLShareDelegate, MFMailComposeViewCon
         mailComposer.setMessageBody(self.initialText, isHTML: false)
         mailComposer.mailComposeDelegate = self
         
-        self.presentationDelegate?.presentController(mailComposer)
+        self.presentController(mailComposer)
     }
     
     func ShareViaSMS() {
@@ -99,7 +93,7 @@ class BLShareController: UIViewController, BLShareDelegate, MFMailComposeViewCon
         smsComposer.recipients = nil
         smsComposer.messageComposeDelegate = self
         
-        self.presentationDelegate?.presentController(smsComposer)
+        self.presentController(smsComposer)
     }
     
     func close() {
@@ -125,7 +119,7 @@ class BLShareController: UIViewController, BLShareDelegate, MFMailComposeViewCon
         default:
             println("unexpected result")
         }
-        self.presentationDelegate?.dismissController()
+        self.dismissController()
     }
     
     // MARK: - MFMessageCompseViewControllerDelegate
@@ -141,7 +135,18 @@ class BLShareController: UIViewController, BLShareDelegate, MFMailComposeViewCon
         default:
             println("unexpected result")
         }
+        self.dismissController()
+    }
+    
+    func presentController(controller: UIViewController) {
         
-        self.presentationDelegate?.dismissController()
+        let delegate = UIApplication.sharedApplication().delegate
+        delegate?.window!?.rootViewController!.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    func dismissController() {
+        
+        let delegate = UIApplication.sharedApplication().delegate
+        delegate?.window!?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }
